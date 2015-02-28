@@ -6,7 +6,9 @@ SpotiTraceServer::Application.routes.draw do
   root 'application#welcome'
 
   namespace :api, defaults: {format: 'json'} do
-    resources :songs
+    resources :songs, only: [:create, :index]
+    resources :users, only: :create
+    resources :locations, only: :create
   end
 
   # Example of regular route:

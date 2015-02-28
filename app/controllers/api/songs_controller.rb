@@ -1,27 +1,17 @@
 class Api::SongsController < Api::ApiController
-  before_action :set_song, only: [:show, :update, :destroy] 
+  before_action :set_song, only: [:destroy] 
 
+  # TODO: remove Song index and replace it by get_nearby_users (and songs) in the UsersController
   def index
-    @songs = Song.all
+    @songs = Song.all.order(:user_id)
     render json: @songs
   end
 
-  def show
-    render json: @song
-  end
-
   def create
-    @song = Song.new(song_params)
+    @song = Song.where(user_id: @user.id).first_or_initialize
+    @song.assign_attributes(song_params)
     if @song.save
       render json: @song, status: :created
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @song.update_attributes(song_params)
-      render json: { status: :ok }
     else
       render json: @song.errors, status: :unprocessable_entity
     end
@@ -41,7 +31,7 @@ class Api::SongsController < Api::ApiController
      end
 
      def song_params
-      params.require(:song).permit(:name, :artist, :album, :uri, :image_url)
+      params.require(:song).permit(:name, :artist, :uri, :image_url)
      end
 
 end
