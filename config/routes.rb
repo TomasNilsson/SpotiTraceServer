@@ -14,6 +14,11 @@ SpotiTraceServer::Application.routes.draw do
       end
     end
     resources :locations, only: :create
+    resources :friendships, only: [:create, :index] do
+      collection do
+        post 'remove'
+      end
+    end
   end
 
   # Example of regular route:
