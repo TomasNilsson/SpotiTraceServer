@@ -18,6 +18,15 @@ class Api::UsersController < Api::ApiController
     # See app/views/api/users/nearby.json.jbuilder
   end
 
+  def master_user
+    @user.master_user_id = params[:id]
+    if @user.save
+      render json: { status: :ok }
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
   private
      def set_user
        @user = User.find(params[:id])

@@ -10,6 +10,7 @@ SpotiTraceServer::Application.routes.draw do
     resources :users, only: :create do
       collection do
         get 'nearby'
+        post 'master_user'
       end
     end
     resources :locations, only: :create
