@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228005914) do
+ActiveRecord::Schema.define(version: 20150302032700) do
 
   create_table "locations", force: true do |t|
     t.float    "latitude"
@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 20150228005914) do
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "master_user_id"
   end
+
+  add_index "users", ["master_user_id"], name: "index_users_on_master_user_id"
 
 end
