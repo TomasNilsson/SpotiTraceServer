@@ -11,10 +11,12 @@ json.array! @nearby_locations do |location|
   
   song = user.song
 
-  json.song do
-    json.name song.name
-    json.artist song.artist
-    json.uri song.uri
-    json.image_url song.image_url
+  if !song.blank?
+    json.song do
+      json.name song.name
+      json.artist song.artist
+      json.uri song.uri
+      json.image_url song.image_url
+    end
   end
 end
