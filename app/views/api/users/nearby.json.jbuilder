@@ -1,5 +1,6 @@
 json.array! @nearby_locations do |location|
   json.distance location.distance
+  json.bearing location.bearing
   
   user = location.user
   
