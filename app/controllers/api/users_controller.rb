@@ -14,7 +14,7 @@ class Api::UsersController < Api::ApiController
   def nearby
     #@user.location.nearbys(30).as_json(only: :distance, include: { user: { only: [:id, :username], include: :song } } ) # Other users within 30 km
     distance = params[:distance] ||= 30
-    @nearby_locations = @user.location.nearbys(distance).limit(10) # Other locations within params[:distance] km (limit number of locations to 10)
+    @nearby_locations = @user.location.nearbys(distance).reject { |location| location.user.song.blank? } # Other locations within params[:distance] km
     # See app/views/api/users/nearby.json.jbuilder
   end
 
