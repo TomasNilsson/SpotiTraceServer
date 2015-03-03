@@ -26,6 +26,15 @@ class Api::UsersController < Api::ApiController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
+  
+  def master_user_remove
+    @user.master_user_id = nil
+    if @user.save
+      render json: { status: :ok }
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
 
   private
      def set_user
