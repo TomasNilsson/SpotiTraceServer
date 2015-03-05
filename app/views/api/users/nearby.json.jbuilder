@@ -1,11 +1,9 @@
 json.array! @nearby_locations do |location|
   user = location.user
-  json.user do
-    json.id user.id
-    json.username user.username
-    json.distance location.distance
-    json.bearing location.bearing
-  end
+  json.id user.id
+  json.username user.username
+  json.distance location.distance
+  json.bearing location.bearing
 
   song = user.song
   json.song do

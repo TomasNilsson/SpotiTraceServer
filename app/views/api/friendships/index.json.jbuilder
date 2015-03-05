@@ -1,13 +1,11 @@
 json.array! @friends do |friend|
   location = @user.location
   
-  json.user do
-    json.id friend.id
-    json.username friend.username
-    if !location.blank?
-      json.distance location.distance_to(friend.location)
-      json.bearing location.bearing_to(friend.location)
-    end
+  json.id friend.id
+  json.username friend.username
+  if !location.blank?
+    json.distance location.distance_to(friend.location)
+    json.bearing location.bearing_to(friend.location)
   end
   
   song = friend.song
