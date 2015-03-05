@@ -7,6 +7,7 @@ json.array! @friends do |friend|
     json.distance location.distance_to(friend.location)
     json.bearing location.bearing_to(friend.location)
   end
+  json.friend @user.friends.exists?(friend)
   
   song = friend.song
 
