@@ -10,6 +10,7 @@ SpotiTraceServer::Application.routes.draw do
     resources :users, only: :create do
       collection do
         get 'nearby'
+        post 'location'
         post 'master_user'
         post 'master_user/remove', to: 'users#master_user_remove'
       end
