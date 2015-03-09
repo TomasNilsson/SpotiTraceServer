@@ -1,7 +1,7 @@
 class Api::FriendshipsController < Api::ApiController
 
   def create
-    @friendship = @user.friendships.build(friend_id: params[:id])
+    @friendship = @user.friendships.where(friend_id: params[:id]).first_or_initialize
     if @friendship.save
       render json: @friendship, status: :created
     else
