@@ -24,6 +24,7 @@ class Api::UsersController < Api::ApiController
     distance_from_location = 30
     @nearby_locations = Location.near([latitude, longitude], distance_from_location).reject { |location| location.user.song.blank? } # Other locations within distance_from_location km
     @my_location = @user.location
+    # See app/views/api/users/location.json.jbuilder
   end
 
   def master_user
@@ -42,6 +43,11 @@ class Api::UsersController < Api::ApiController
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+  end
+
+  def followers
+    @followers = @user.followers
+    # See app/views/api/users/followers.json.jbuilder
   end
 
   private

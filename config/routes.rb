@@ -13,6 +13,7 @@ SpotiTraceServer::Application.routes.draw do
         post 'location'
         post 'master_user'
         post 'master_user/remove', to: 'users#master_user_remove'
+        get 'followers'
       end
     end
     resources :locations, only: :create
