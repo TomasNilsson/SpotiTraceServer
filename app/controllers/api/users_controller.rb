@@ -10,6 +10,12 @@ class Api::UsersController < Api::ApiController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
+
+  def show
+    @my_location = @user.location
+    @other_user = User.find(params[:id])
+    # See app/views/api/users/show.json.jbuilder
+  end
   
   def nearby
     #@user.location.nearbys(30).as_json(only: :distance, include: { user: { only: [:id, :username], include: :song } } ) # Other users within 30 km

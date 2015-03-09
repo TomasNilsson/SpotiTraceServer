@@ -7,7 +7,7 @@ SpotiTraceServer::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     resources :songs, only: [:create, :index]
-    resources :users, only: :create do
+    resources :users, only: [:create, :show] do
       collection do
         get 'nearby'
         post 'location'
