@@ -10,7 +10,7 @@ class Api::FriendshipsController < Api::ApiController
   end
   
   def index
-    @friends = @user.friends
+    @friends = @user.friends.order(:username)
     # See app/views/api/friendships/index.json.jbuilder
   end
 
